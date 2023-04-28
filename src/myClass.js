@@ -10,9 +10,14 @@ class MyClass {
     }
 
     add(arg1, arg2) {
-        let result;
-        result = arg1 + arg2;
-        return result;
+        if (1) {
+            let result;
+            result = arg1 + arg2;
+            return result;
+        } else {
+            return 2
+        }
+        
     }
 
     callTheCallback(callback) {

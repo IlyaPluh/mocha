@@ -1,0 +1,1 @@
+{"processes":{"38297c98-f625-4f51-8b46-ecde798a2056":{"parent":"7125a922-5ea6-4da1-bee2-4549618886b9","children":[]},"7125a922-5ea6-4da1-bee2-4549618886b9":{"parent":null,"children":["38297c98-f625-4f51-8b46-ecde798a2056"]}},"files":{"/Users/ilyaandriyanov/Documents/GitHub/mocha/src/myClass.js":["38297c98-f625-4f51-8b46-ecde798a2056"]},"externalIds":{}}
