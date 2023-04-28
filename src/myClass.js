@@ -24,6 +24,13 @@ class MyClass {
         return result
     }
 
+    testPromise() {
+        return new Promise(function(resolve, reject) {
+            setTimeout(()=> resolve(3), 3000)
+        }).then(function(result) {
+            return result * 2 
+        })
+    }
 }
 
 module.exports = MyClass;
