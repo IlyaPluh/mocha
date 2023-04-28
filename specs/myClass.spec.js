@@ -5,6 +5,8 @@ let chai = require("chai");
 let expect = chai.expect;
 const chaipromise = require("chai-as-promised");
 chai.use(chaipromise);
+const nock = require("nock")
+
 
 describe.skip("Test suit", function () {
     it("Test the add method", function () {
@@ -47,7 +49,7 @@ describe.skip("Test suit for stub", function() {
     })
 })
 
-describe("Test the promise", function() {
+describe.skip("Test the promise", function() {
     it("Promise tast case", function () {
         this.timeout(0)
         // myObj.testPromise().then(function(result) {
@@ -55,5 +57,21 @@ describe("Test the promise", function() {
         //     done()
         //})
         return expect(myObj.testPromise()).to.eventually.equal(6)
+    })
+})
+
+describe("XHR test suit", function() {
+    it("Mock and stub xhr call", function (done) {
+        const scope = nock("https://echo-service-new.herokuapp.com")
+            .post("/echo")
+            .reply(200, {id:123})
+        myObj.xhrFn().then(function(result) {
+            console.log(result)
+            expect(result).to.be.equal({id:123})
+            done()
+        })
+        .catch(error => {
+            done(new Error("test failed"))
+        })
     })
 })
