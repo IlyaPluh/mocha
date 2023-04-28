@@ -8,12 +8,33 @@ chai.use(chaipromise);
 const nock = require("nock")
 
 
-describe.skip("Test suit", function () {
+describe("Test suit", function () {
+    after(function() {
+        console.log("----- After the test suit")
+    })
+    before(function() {
+        console.log("----- Before the test suit")
+    })
     it("Test the add method", function () {
         expect(myObj.add(1, 2)).to.be.equal(3);
     })
-
+    afterEach(function() {
+        console.log("----- After each test case")
+    })
+    // beforeEach(function() {
+    //     console.log("----- Before each test case")
+    //     sinon.restore()
+    // })
     it("spy the add method", function () {
+        let spy = sinon.spy(myObj, "add");
+        let arg1 = 10, arg2 = 20;
+        myObj.callAnotherFn(arg1, arg2);
+        //sinon.assert.calledTwice(spy);
+        expect(spy.calledOnce).to.be.true;
+        expect(spy.calledWith(arg1, arg2)).to.be.true;
+    })
+
+    it("copy spy the add method", function () {
         let spy = sinon.spy(myObj, "add");
         let arg1 = 10, arg2 = 20;
         myObj.callAnotherFn(arg1, arg2);
@@ -60,7 +81,7 @@ describe.skip("Test the promise", function() {
     })
 })
 
-describe("XHR test suit", function() {
+describe.skip("XHR test suit", function() {
     it("Mock and stub xhr call", function (done) {
         const scope = nock("https://echo-service-new.herokuapp.com")
             .post("/echo")
@@ -70,8 +91,13 @@ describe("XHR test suit", function() {
             expect(result).to.be.equal({id:123})
             done()
         })
-        .catch(error => {
-            done(new Error("test failed"))
-        })
+        // .catch(error => {
+        //     done(new Error("test failed"))
+        // })
     })
+})
+
+beforeEach(function() {
+    console.log("----- Root Before each test case")
+    sinon.restore()
 })
